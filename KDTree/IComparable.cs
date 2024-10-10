@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UdajovkySem1
+{
+    internal interface IComparable
+    {
+        int CompareTo(object obj, int depth);
+        bool Equals(object obj);
+    }
+}
