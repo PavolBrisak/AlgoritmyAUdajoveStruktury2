@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using UdajovkySem1.StructureTester;
 using UdajovkySem1.Tester;
 
@@ -30,49 +31,75 @@ namespace UdajovkySem1
             //Console.WriteLine("Tree:");
             //tree.Print();
 
-            Random _random = new Random();
+            //bool koniec = true;
+            //KDTree<Numbers> tree = new KDTree<Numbers>();
+            //while (koniec)
+            //{
+            //    Console.WriteLine("Enter the number of elements that will be inserted into the tree:");
+            //    int pocet = int.Parse(Console.ReadLine());
 
-            KDTree<Numbers> tree = new KDTree<Numbers>();
+            //    Random random = new Random();
+            //    StructureTester<KDTree<Numbers>, Numbers> tester = new StructureTester<KDTree<Numbers>, Numbers>(
+            //        tree,
+            //        pocet,
+            //        () => new Numbers(
+            //            random.Next(0, 101),
+            //            random.Next(0, 101),
+            //            random.Next(0, 101)
+            //        )
+            //    );
 
-            StructureTester<KDTree<Numbers>, Numbers> tester = new StructureTester<KDTree<Numbers>, Numbers>(
-                tree,
-                4,
-                () => new Numbers(
-                    _random.Next(0, 101),
-                    _random.Next(0, 101),
-                    _random.Next(0, 101)
-                )
-            );
+            //    tester.TestInsert();
 
-            tester.TestInsert();
+            //    Console.WriteLine(tree.Print());
 
-            tree.Print();
+            //    Console.WriteLine("Enter data of the element you want to delete:");
+            //    int first = int.Parse(Console.ReadLine());
+            //    int second = int.Parse(Console.ReadLine());
+            //    int third = int.Parse(Console.ReadLine());
+            //    Numbers numbers = new Numbers(first, second, third);
+            //    tree.Delete(numbers);
+            //    Console.WriteLine(tree.Print());
 
-            Console.WriteLine("Enter three integers:");
-            int first = int.Parse(Console.ReadLine());
-            int second = int.Parse(Console.ReadLine());
-            int third = int.Parse(Console.ReadLine());
-            Numbers numbers = new Numbers(first, second, third);
-            tree.Insert(numbers);
-            tree.Print();
+            //    Console.WriteLine("Do you want to continue? (y/n)");
+            //    string odpoved = Console.ReadLine();
+            //    if (odpoved == "n")
+            //    {
+            //        koniec = false;
+            //    }
+            //}
 
-            Console.WriteLine("Enter three integers:");
-            int first1 = int.Parse(Console.ReadLine());
-            int second1 = int.Parse(Console.ReadLine());
-            int third1 = int.Parse(Console.ReadLine());
-            numbers = new Numbers(first1, second1, third1);
-            List<Numbers> found = tree.Find(numbers);
-            if (found.Count != 0)
-            {
-                foreach (Numbers n in found)
-                {
-                    Console.WriteLine(n);
-                }
-            }
-            else
-            {
-                Console.WriteLine("Not found");
-            }
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            MainForm form = new MainForm();
+            Application.Run(form);
+
+            //Console.WriteLine("Enter three integers:");
+            //int first = int.Parse(Console.ReadLine());
+            //int second = int.Parse(Console.ReadLine());
+            //int third = int.Parse(Console.ReadLine());
+            //Numbers numbers = new Numbers(first, second, third);
+            //tree.Insert(numbers);
+            //tree.Print();
+
+            //Console.WriteLine("Enter three integers:");
+            //int first1 = int.Parse(Console.ReadLine());
+            //int second1 = int.Parse(Console.ReadLine());
+            //int third1 = int.Parse(Console.ReadLine());
+            //numbers = new Numbers(first1, second1, third1);
+            //List<Numbers> found = tree.Find(numbers);
+            //if (found.Count != 0)
+            //{
+            //    foreach (Numbers n in found)
+            //    {
+            //        Console.WriteLine(n);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Not found");
+            //}
+
             //KDTree<Numbers> tree = new KDTree<Numbers>();
             //int i = 0;
             //tree.Insert(new Numbers(10, 10, ++i));

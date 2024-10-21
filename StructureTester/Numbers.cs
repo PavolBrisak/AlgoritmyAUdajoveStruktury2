@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UdajovkySem1.StructureTester
 {
-    internal class Numbers : IComparable
+    public class Numbers : IComparable
     {
         public Tuple<int, int, int> NumberTuple { get; set; }
 
@@ -30,7 +30,7 @@ namespace UdajovkySem1.StructureTester
                     {
                         return 0;
                     }
-                    else if (NumberTuple.Item1 < other.NumberTuple.Item1)
+                    else if (NumberTuple.Item1 > other.NumberTuple.Item1)
                     {
                         return 1;
                     }
@@ -43,7 +43,7 @@ namespace UdajovkySem1.StructureTester
                     {
                         return 0;
                     }
-                    else if (NumberTuple.Item2 < other.NumberTuple.Item2)
+                    else if (NumberTuple.Item2 > other.NumberTuple.Item2)
                     {
                         return 1;
                     }

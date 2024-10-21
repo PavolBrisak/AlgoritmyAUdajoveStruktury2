@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UdajovkySem1
 {
-    internal interface IComparable
+    public interface IComparable
     {
         int CompareTo(object obj, int depth);
         bool Equals(object obj);

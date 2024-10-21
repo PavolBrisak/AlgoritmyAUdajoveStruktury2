@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace UdajovkySem1
 {
-    internal class RealEstate
+    public class RealEstate
     {
-        private int _number;
-        private string _description;
+        public int Number { get; set; }
+        public string Description { get; set; }
         private List<PlotOfLand> _plotsOfLand = new List<PlotOfLand>();
-        private GPSPosition _X;
-        private GPSPosition _Y;
+        private GPSPosition _x;
+        private GPSPosition _y;
 
         public RealEstate(int number, string description, GPSPosition X, GPSPosition Y)
         {
-            _number = number;
-            _description = description;
-            _X = X;
-            _Y = Y;
+            Number = number;
+            Description = description;
+            _x = X;
+            _y = Y;
         }
 
         public void AddPlotOfLand(PlotOfLand plotOfLand)
@@ -28,6 +28,9 @@ namespace UdajovkySem1
             _plotsOfLand.Add(plotOfLand);
         }
 
-
+        public override string ToString()
+        {
+            return $"RealEstate number: {Number}, description: {Description}";
+        }
     }
 }

@@ -6,20 +6,30 @@ using System.Threading.Tasks;
 
 namespace UdajovkySem1
 {
-    internal class KDNode<T> where T : IComparable
+    public class KDNode<T> where T : IComparable
     {
-        public T _data { get; set; }
-        public KDNode<T> _parent { get; set; }
-        public KDNode<T> _leftSon { get; set; }
-        public KDNode<T> _rightSon { get; set; }
+        public T Data { get; set; }
+        public KDNode<T> Parent { get; set; }
+        public KDNode<T> LeftSon { get; set; }
+        public KDNode<T> RightSon { get; set; }
+
+        public int Depth { get; set; }
 
         public KDNode(T data)
         {
-            _data = data;
-            _parent = null;
-            _leftSon = null;
-            _rightSon = null;
+            Data = data;
+            Parent = null;
+            LeftSon = null;
+            RightSon = null;
         }
 
+        public bool IsLeaf()
+        {
+            if (LeftSon == null && RightSon == null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -7,24 +7,26 @@ using System.Threading.Tasks;
 
 namespace UdajovkySem1
 {
-    internal class PlotOfLand : IComparable
+    public class PlotOfLand : IComparable
     {
-        private int _number;
-        private string _description;
-        private List<RealEstate> _realEstates = new List<RealEstate>();
+        public int Number { get; set; }
+        public string Description { get; set; }
+        public List<RealEstate> RealEstates { get; set; }
         public List<GPSPosition> GpsPositions = new List<GPSPosition>();
 
         public PlotOfLand(int number, string description, GPSPosition X, GPSPosition Y)
         {
-            _number = number;
-            _description = description;
+            Number = number;
+            Description = description;
             GpsPositions.Add(X);
             GpsPositions.Add(Y);
+            RealEstates = new List<RealEstate>();
+
         }
 
         public void AddRealEstate(RealEstate realEstate)
         {
-            _realEstates.Add(realEstate);
+            RealEstates.Add(realEstate);
         }
 
         public int CompareTo(object obj, int depth)
@@ -52,14 +54,14 @@ namespace UdajovkySem1
             {
                 throw new ArgumentException("Object is not a PlotOfLand");
             }
-            return _number == otherPlot._number && _description == otherPlot._description &&
+            return Number == otherPlot.Number && Description == otherPlot.Description &&
                    GpsPositions[0].Equals(otherPlot.GpsPositions[0]) && GpsPositions[1].Equals(otherPlot.GpsPositions[1]);
         }
 
 
         public override string ToString()
         {
-            return $"Plot of Land: {_number}, Description: {_description}, GPS Position: {GpsPositions[0]}, {GpsPositions[1]}";
+            return $"Plot of Land: {Number}, Description: {Description}";
         }
     }
 }
