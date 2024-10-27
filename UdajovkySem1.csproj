@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ApplicationCore.cs" />
     <Compile Include="GPSPosition.cs" />
+    <Compile Include="ILocatable.cs" />
     <Compile Include="KDTree\IComparable.cs" />
     <Compile Include="KDTree\KDNode.cs" />
     <Compile Include="KDTree\KDTree.cs" />

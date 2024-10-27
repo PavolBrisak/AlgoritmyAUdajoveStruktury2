@@ -7,30 +7,31 @@ using System.Threading.Tasks;
 
 namespace UdajovkySem1
 {
-    public class RealEstate
+    public class RealEstate : ILocatable
     {
         public int Number { get; set; }
         public string Description { get; set; }
-        private List<PlotOfLand> _plotsOfLand = new List<PlotOfLand>();
-        private GPSPosition _x;
-        private GPSPosition _y;
+        public List<PlotOfLand> PlotsOfLand { get; set; }
+        public List<GPSPosition> GpsPositions { get; set; }
 
         public RealEstate(int number, string description, GPSPosition X, GPSPosition Y)
         {
+            GpsPositions = new List<GPSPosition>();
+            PlotsOfLand = new List<PlotOfLand>();
             Number = number;
             Description = description;
-            _x = X;
-            _y = Y;
+            GpsPositions.Add(X);
+            GpsPositions.Add(Y);
         }
 
         public void AddPlotOfLand(PlotOfLand plotOfLand)
         {
-            _plotsOfLand.Add(plotOfLand);
+            PlotsOfLand.Add(plotOfLand);
         }
 
         public override string ToString()
         {
-            return $"RealEstate number: {Number}, description: {Description}";
+            return $"Real Estate: {Number}, Description: {Description}";
         }
     }
 }
