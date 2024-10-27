@@ -93,8 +93,15 @@ namespace UdajovkySem1
                     if (nodeToBeInsertedBack != null)
                     {
                         Console.WriteLine("Node to be inserted back: " + nodeToBeInsertedBack.Data + " for replacement node: " + replacementNode.Data);
-                        nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
-                        Delete(nodeToBeInsertedBack.Data);
+                        if (!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack))
+                        {
+                            nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
+                            Delete(nodeToBeInsertedBack.Data);
+                        }
+                        else
+                        {
+                            end = false;
+                        }
                     }
                     else
                     {
@@ -115,8 +122,15 @@ namespace UdajovkySem1
                     if (nodeToBeInsertedBack != null)
                     {
                         Console.WriteLine("Node to be inserted back: " + nodeToBeInsertedBack.Data + " for replacement node: " + replacementNode.Data);
-                        nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
-                        Delete(nodeToBeInsertedBack.Data);
+                        if (!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack))
+                        {
+                            nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
+                            Delete(nodeToBeInsertedBack.Data);
+                        }
+                        else
+                        {
+                            end = false;
+                        }
                     }
                     else
                     {
@@ -134,6 +148,7 @@ namespace UdajovkySem1
             else
             {
                 List<KDNode<T>> replacements = new List<KDNode<T>>();
+                replacements.Add(replacementNode);
                 KDNode<T> replacementNodeCopy = replacementNode;
                 bool end = true;
                 while (replacementNode != null && end)
@@ -147,8 +162,16 @@ namespace UdajovkySem1
                             KDNode<T> nodeToBeInsertedBack = Iterator.FindEqual(replacementNodeCopy.RightSon, replacementNodeCopy.Depth, replacementNode);
                             if (nodeToBeInsertedBack != null)
                             {
-                                nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
-                                Delete(nodeToBeInsertedBack.Data);
+                                Console.WriteLine("Node to be inserted back: " + nodeToBeInsertedBack.Data + " for replacement node: " + replacementNode.Data);
+                                if (!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack))
+                                {
+                                    nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
+                                    Delete(nodeToBeInsertedBack.Data);
+                                }
+                                else
+                                {
+                                    endEqual = false;
+                                }
                             }
                             else
                             {
@@ -166,8 +189,16 @@ namespace UdajovkySem1
                             KDNode<T> nodeToBeInsertedBack = Iterator.FindEqual(replacementNodeCopy.LeftSon, replacementNodeCopy.Depth, replacementNode);
                             if (nodeToBeInsertedBack != null)
                             {
-                                nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
-                                Delete(nodeToBeInsertedBack.Data);
+                                Console.WriteLine("Node to be inserted back: " + nodeToBeInsertedBack.Data + " for replacement node: " + replacementNode.Data);
+                                if (!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack))
+                                {
+                                    nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
+                                    Delete(nodeToBeInsertedBack.Data);
+                                }
+                                else
+                                {
+                                    endEqual = false;
+                                }
                             }
                             else
                             {
@@ -236,6 +267,16 @@ namespace UdajovkySem1
             }
 
             return null;
+        }
+
+        public T FindSpecificData(T data)
+        {
+            KDNode<T> node = FindSpecificNode(data);
+            if (node == null)
+            {
+                return default(T);
+            }
+            return node.Data;
         }
 
         private void SwitchNodes(KDNode<T> node1, KDNode<T> node2)
@@ -411,6 +452,10 @@ namespace UdajovkySem1
             if (node == null)
                 return null;
 
+            if (node.LeftSon == null && node.RightSon == null)
+                return node;
+
+            ClearQueue();
             KDNode<T> minNode = node;
             _queue.Enqueue(node);
 
@@ -433,7 +478,6 @@ namespace UdajovkySem1
                 }
             }
 
-            ClearQueue();
             return minNode;
         }
 
@@ -442,6 +486,10 @@ namespace UdajovkySem1
             if (node == null)
                 return null;
 
+            if (node.LeftSon == null && node.RightSon == null)
+                return node;
+
+            ClearQueue();
             KDNode<T> maxNode = node;
             _queue.Enqueue(node);
 
@@ -464,7 +512,6 @@ namespace UdajovkySem1
                 }
             }
 
-            ClearQueue();
             return maxNode;
         }
 
@@ -473,6 +520,10 @@ namespace UdajovkySem1
             if (son == null)
                 return null;
 
+            if (son.LeftSon == null && son.RightSon == null)
+                return null;
+
+            ClearQueue();
             KDNode<T> current = son;
             _queue.Enqueue(son);
 
@@ -492,7 +543,6 @@ namespace UdajovkySem1
                 }
             }
 
-            ClearQueue();
             return null;
         }
     }

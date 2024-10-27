@@ -431,7 +431,7 @@ namespace UdajovkySem1
             {
                 try
                 {
-                    string found = "Found test data:\n" + _appCore.TestFind(count);
+                    string found = _appCore.TestFind(count);
                     textBox_SubPrint.Text = found;
                     PrintTree();
                 }

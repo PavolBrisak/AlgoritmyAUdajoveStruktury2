@@ -604,6 +604,25 @@ namespace UdajovkySem1
                 PrintLogToConsole(PrintTree(_numbersTree));
                 PrintLogToConsole("Deleting data: " + randomNumbers.ToString());
                 _numbersTree.Delete(randomNumbers);
+                PrintLogToConsole("Znova sa pokusam najst ten prvok, ktory sme vymazali: ");
+                Numbers found = _numbersTree.FindSpecificData(randomNumbers);
+                if (found != null)
+                {
+                    PrintLogToConsole("Nasiel som ho: " + found.ToString());
+                }
+                else
+                {
+                    PrintLogToConsole("Nenasli sme ho.");
+                }
+                if (_numbersTree.Root == null)
+                {
+                    PrintLogToConsole("Strom je prazdny.");
+                }
+                else
+                {
+                    PrintLogToConsole("Strom po delete: ");
+                    PrintLogToConsole(PrintTree(_numbersTree));
+                }
                 _numbers.Remove(randomNumbers);
                 result.AppendLine("Deleted data: " + randomNumbers.ToString());
 
