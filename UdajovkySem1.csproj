@@ -45,9 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationCore.cs" />
-    <Compile Include="GPSPosition.cs" />
-    <Compile Include="ILocatable.cs" />
+    <Compile Include="ApplicationCore\ApplicationCore.cs" />
+    <Compile Include="ApplicationCore\GPSPosition.cs" />
+    <Compile Include="ApplicationCore\ILocatable.cs" />
     <Compile Include="KDTree\IComparable.cs" />
     <Compile Include="KDTree\KDNode.cs" />
     <Compile Include="KDTree\KDTree.cs" />
@@ -58,13 +58,10 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OperationGenerator.cs" />
-    <Compile Include="PlotOfLand.cs" />
+    <Compile Include="ApplicationCore\PlotOfLand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RealEstate.cs" />
-    <Compile Include="StructureTester\IInsertable.cs" />
-    <Compile Include="StructureTester\Numbers.cs" />
-    <Compile Include="StructureTester\StructureTester.cs" />
+    <Compile Include="ApplicationCore\RealEstate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -74,5 +71,6 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

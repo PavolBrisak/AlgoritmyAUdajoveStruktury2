@@ -10,9 +10,9 @@ namespace UdajovkySem1
     {
         private readonly Random _random;
 
-        public OperationGenerator()
+        public OperationGenerator(Random random)
         {
-            _random = new Random();
+            _random = random;
         }
 
         public double GenerateValueFromMinMax(double min, double max)
@@ -27,9 +27,9 @@ namespace UdajovkySem1
             return Math.Round(value, desMiesta);
         }
 
-        public int GenerateIntValue(int max = 100)
+        public int GenerateIntValue()
         {
-            return _random.Next(0,max);
+            return _random.Next();
         }
 
         public int GenerateIntValue(int min, int max)
@@ -37,11 +37,10 @@ namespace UdajovkySem1
             return _random.Next(min, max);
         }
 
-        public string GenerateString(int maxLength = 10)
+        public string GenerateString(int maxLength)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            int length = _random.Next(1, maxLength + 1);
-            return new string(Enumerable.Repeat(chars, length)
+            return new string(Enumerable.Repeat(chars, maxLength)
               .Select(s => s[_random.Next(s.Length)]).ToArray());
         }
 

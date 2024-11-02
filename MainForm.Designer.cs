@@ -144,31 +144,32 @@
             this.label_GeneratorDelete_Count = new System.Windows.Forms.Label();
             this.label_GeneratorDelete = new System.Windows.Forms.Label();
             this.panel_OperationGenerator = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox_Test_Insert_DesMiesta = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button_Test_Insert = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox_Test_Insert_Count = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox_Test_Insert_Min = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox_Test_Insert_Max = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.button_Test_Delete = new System.Windows.Forms.Button();
-            this.textBox_Test_Delete_Count = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label_KDTreeTester = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.button_Test_Find = new System.Windows.Forms.Button();
-            this.textBox_Test_Find_Count = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox_Test_Insert_DuplicitPercentage = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button_Update_RealEstate_Find = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox_Update_RealEstate_Choose = new System.Windows.Forms.TextBox();
+            this.label_Update_RealEstate_Choose = new System.Windows.Forms.Label();
+            this.label_Update_RealEstate = new System.Windows.Forms.Label();
+            this.textBox_Update_RealEstate_X = new System.Windows.Forms.TextBox();
+            this.label_Update_RealEstate_X = new System.Windows.Forms.Label();
+            this.label_Update_RealEstate_Y = new System.Windows.Forms.Label();
+            this.textBox_Update_RealEstate_Y = new System.Windows.Forms.TextBox();
+            this.comboBox_Update_RealEstate_X = new System.Windows.Forms.ComboBox();
+            this.button_Update_RealEstate = new System.Windows.Forms.Button();
+            this.comboBox_Update_RealEstate_Y = new System.Windows.Forms.ComboBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.button_Update_PlotOfLand_Find = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox_Update_PlotOfLand_Choose = new System.Windows.Forms.TextBox();
+            this.textBox_Update_PlotOfLand_X = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox_Update_PlotOfLand_Y = new System.Windows.Forms.TextBox();
+            this.comboBox_Update_PlotOfLand_X = new System.Windows.Forms.ComboBox();
+            this.button_Update_PlotOfLand = new System.Windows.Forms.Button();
+            this.comboBox_Update_PlotOfLand_Y = new System.Windows.Forms.ComboBox();
+            this.label_Update_PlotOfLand = new System.Windows.Forms.Label();
             this.panel_GenerateInsert_PlotOfLand.SuspendLayout();
             this.panel_Find_RealEstate.SuspendLayout();
             this.panel_Find_PlotOfLand.SuspendLayout();
@@ -181,10 +182,8 @@
             this.panel_GenerateFind.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_OperationGenerator.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox_PrintTree
@@ -1267,239 +1266,245 @@
             this.panel_OperationGenerator.Size = new System.Drawing.Size(538, 241);
             this.panel_OperationGenerator.TabIndex = 36;
             // 
-            // panel2
+            // panel5
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.label_KDTreeTester);
-            this.panel2.Controls.Add(this.panel6);
-            this.panel2.Location = new System.Drawing.Point(133, 646);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(538, 241);
-            this.panel2.TabIndex = 37;
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.button_Update_RealEstate_Find);
+            this.panel5.Controls.Add(this.label10);
+            this.panel5.Controls.Add(this.textBox_Update_RealEstate_Choose);
+            this.panel5.Controls.Add(this.label_Update_RealEstate_Choose);
+            this.panel5.Controls.Add(this.label_Update_RealEstate);
+            this.panel5.Controls.Add(this.textBox_Update_RealEstate_X);
+            this.panel5.Controls.Add(this.label_Update_RealEstate_X);
+            this.panel5.Controls.Add(this.label_Update_RealEstate_Y);
+            this.panel5.Controls.Add(this.textBox_Update_RealEstate_Y);
+            this.panel5.Controls.Add(this.comboBox_Update_RealEstate_X);
+            this.panel5.Controls.Add(this.button_Update_RealEstate);
+            this.panel5.Controls.Add(this.comboBox_Update_RealEstate_Y);
+            this.panel5.Location = new System.Drawing.Point(678, 574);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(301, 169);
+            this.panel5.TabIndex = 38;
             // 
-            // panel3
+            // button_Update_RealEstate_Find
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.textBox_Test_Insert_DuplicitPercentage);
-            this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.textBox_Test_Insert_DesMiesta);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.button_Test_Insert);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.textBox_Test_Insert_Count);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.textBox_Test_Insert_Min);
-            this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.textBox_Test_Insert_Max);
-            this.panel3.Location = new System.Drawing.Point(3, 36);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(258, 197);
-            this.panel3.TabIndex = 21;
+            this.button_Update_RealEstate_Find.Location = new System.Drawing.Point(25, 94);
+            this.button_Update_RealEstate_Find.Name = "button_Update_RealEstate_Find";
+            this.button_Update_RealEstate_Find.Size = new System.Drawing.Size(75, 23);
+            this.button_Update_RealEstate_Find.TabIndex = 47;
+            this.button_Update_RealEstate_Find.Text = "Find";
+            this.button_Update_RealEstate_Find.UseVisualStyleBackColor = true;
             // 
-            // textBox_Test_Insert_DesMiesta
+            // label10
             // 
-            this.textBox_Test_Insert_DesMiesta.Location = new System.Drawing.Point(71, 80);
-            this.textBox_Test_Insert_DesMiesta.Name = "textBox_Test_Insert_DesMiesta";
-            this.textBox_Test_Insert_DesMiesta.Size = new System.Drawing.Size(44, 20);
-            this.textBox_Test_Insert_DesMiesta.TabIndex = 22;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(150, 33);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(133, 13);
+            this.label10.TabIndex = 46;
+            this.label10.Text = "correcponding Real Estate";
             // 
-            // label1
+            // textBox_Update_RealEstate_Choose
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(58, 59);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Des. miest:";
+            this.textBox_Update_RealEstate_Choose.Location = new System.Drawing.Point(153, 55);
+            this.textBox_Update_RealEstate_Choose.Name = "textBox_Update_RealEstate_Choose";
+            this.textBox_Update_RealEstate_Choose.Size = new System.Drawing.Size(51, 20);
+            this.textBox_Update_RealEstate_Choose.TabIndex = 45;
             // 
-            // button_Test_Insert
+            // label_Update_RealEstate_Choose
             // 
-            this.button_Test_Insert.Location = new System.Drawing.Point(17, 157);
-            this.button_Test_Insert.Name = "button_Test_Insert";
-            this.button_Test_Insert.Size = new System.Drawing.Size(89, 23);
-            this.button_Test_Insert.TabIndex = 20;
-            this.button_Test_Insert.Text = "Generate Insert";
-            this.button_Test_Insert.UseVisualStyleBackColor = true;
-            this.button_Test_Insert.Click += new System.EventHandler(this.button_Test_Insert_Click);
+            this.label_Update_RealEstate_Choose.AutoSize = true;
+            this.label_Update_RealEstate_Choose.Location = new System.Drawing.Point(150, 14);
+            this.label_Update_RealEstate_Choose.Name = "label_Update_RealEstate_Choose";
+            this.label_Update_RealEstate_Choose.Size = new System.Drawing.Size(121, 13);
+            this.label_Update_RealEstate_Choose.TabIndex = 44;
+            this.label_Update_RealEstate_Choose.Text = "Enter the number for the";
             // 
-            // label2
+            // label_Update_RealEstate
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Insert Data";
+            this.label_Update_RealEstate.AutoSize = true;
+            this.label_Update_RealEstate.Location = new System.Drawing.Point(9, 12);
+            this.label_Update_RealEstate.Name = "label_Update_RealEstate";
+            this.label_Update_RealEstate.Size = new System.Drawing.Size(100, 13);
+            this.label_Update_RealEstate.TabIndex = 30;
+            this.label_Update_RealEstate.Text = "Update Real Estate";
             // 
-            // label3
+            // textBox_Update_RealEstate_X
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 59);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Count:";
+            this.textBox_Update_RealEstate_X.Location = new System.Drawing.Point(32, 38);
+            this.textBox_Update_RealEstate_X.Name = "textBox_Update_RealEstate_X";
+            this.textBox_Update_RealEstate_X.Size = new System.Drawing.Size(62, 20);
+            this.textBox_Update_RealEstate_X.TabIndex = 38;
             // 
-            // textBox_Test_Insert_Count
+            // label_Update_RealEstate_X
             // 
-            this.textBox_Test_Insert_Count.Location = new System.Drawing.Point(7, 80);
-            this.textBox_Test_Insert_Count.Name = "textBox_Test_Insert_Count";
-            this.textBox_Test_Insert_Count.Size = new System.Drawing.Size(49, 20);
-            this.textBox_Test_Insert_Count.TabIndex = 7;
+            this.label_Update_RealEstate_X.AutoSize = true;
+            this.label_Update_RealEstate_X.Location = new System.Drawing.Point(9, 41);
+            this.label_Update_RealEstate_X.Name = "label_Update_RealEstate_X";
+            this.label_Update_RealEstate_X.Size = new System.Drawing.Size(17, 13);
+            this.label_Update_RealEstate_X.TabIndex = 36;
+            this.label_Update_RealEstate_X.Text = "X:";
             // 
-            // label4
+            // label_Update_RealEstate_Y
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 112);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(27, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Min:";
+            this.label_Update_RealEstate_Y.AutoSize = true;
+            this.label_Update_RealEstate_Y.Location = new System.Drawing.Point(9, 67);
+            this.label_Update_RealEstate_Y.Name = "label_Update_RealEstate_Y";
+            this.label_Update_RealEstate_Y.Size = new System.Drawing.Size(17, 13);
+            this.label_Update_RealEstate_Y.TabIndex = 37;
+            this.label_Update_RealEstate_Y.Text = "Y:";
             // 
-            // textBox_Test_Insert_Min
+            // textBox_Update_RealEstate_Y
             // 
-            this.textBox_Test_Insert_Min.Location = new System.Drawing.Point(7, 131);
-            this.textBox_Test_Insert_Min.Name = "textBox_Test_Insert_Min";
-            this.textBox_Test_Insert_Min.Size = new System.Drawing.Size(45, 20);
-            this.textBox_Test_Insert_Min.TabIndex = 9;
+            this.textBox_Update_RealEstate_Y.Location = new System.Drawing.Point(32, 64);
+            this.textBox_Update_RealEstate_Y.Name = "textBox_Update_RealEstate_Y";
+            this.textBox_Update_RealEstate_Y.Size = new System.Drawing.Size(62, 20);
+            this.textBox_Update_RealEstate_Y.TabIndex = 39;
             // 
-            // label6
+            // comboBox_Update_RealEstate_X
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(68, 113);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Max:";
+            this.comboBox_Update_RealEstate_X.FormattingEnabled = true;
+            this.comboBox_Update_RealEstate_X.Location = new System.Drawing.Point(101, 36);
+            this.comboBox_Update_RealEstate_X.Name = "comboBox_Update_RealEstate_X";
+            this.comboBox_Update_RealEstate_X.Size = new System.Drawing.Size(40, 21);
+            this.comboBox_Update_RealEstate_X.TabIndex = 40;
             // 
-            // textBox_Test_Insert_Max
+            // button_Update_RealEstate
             // 
-            this.textBox_Test_Insert_Max.Location = new System.Drawing.Point(62, 129);
-            this.textBox_Test_Insert_Max.Name = "textBox_Test_Insert_Max";
-            this.textBox_Test_Insert_Max.Size = new System.Drawing.Size(45, 20);
-            this.textBox_Test_Insert_Max.TabIndex = 11;
+            this.button_Update_RealEstate.Location = new System.Drawing.Point(154, 89);
+            this.button_Update_RealEstate.Name = "button_Update_RealEstate";
+            this.button_Update_RealEstate.Size = new System.Drawing.Size(117, 28);
+            this.button_Update_RealEstate.TabIndex = 43;
+            this.button_Update_RealEstate.Text = "Update";
+            this.button_Update_RealEstate.UseVisualStyleBackColor = true;
             // 
-            // panel4
+            // comboBox_Update_RealEstate_Y
             // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.button_Test_Delete);
-            this.panel4.Controls.Add(this.textBox_Test_Delete_Count);
-            this.panel4.Controls.Add(this.label7);
-            this.panel4.Controls.Add(this.label8);
-            this.panel4.Location = new System.Drawing.Point(401, 36);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(132, 126);
-            this.panel4.TabIndex = 35;
+            this.comboBox_Update_RealEstate_Y.FormattingEnabled = true;
+            this.comboBox_Update_RealEstate_Y.Location = new System.Drawing.Point(101, 64);
+            this.comboBox_Update_RealEstate_Y.Name = "comboBox_Update_RealEstate_Y";
+            this.comboBox_Update_RealEstate_Y.Size = new System.Drawing.Size(40, 21);
+            this.comboBox_Update_RealEstate_Y.TabIndex = 42;
             // 
-            // button_Test_Delete
+            // panel7
             // 
-            this.button_Test_Delete.Location = new System.Drawing.Point(8, 89);
-            this.button_Test_Delete.Name = "button_Test_Delete";
-            this.button_Test_Delete.Size = new System.Drawing.Size(117, 23);
-            this.button_Test_Delete.TabIndex = 42;
-            this.button_Test_Delete.Text = "Generate Delete";
-            this.button_Test_Delete.UseVisualStyleBackColor = true;
-            this.button_Test_Delete.Click += new System.EventHandler(this.button_Test_Delete_Click);
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.label14);
+            this.panel7.Controls.Add(this.button_Update_PlotOfLand_Find);
+            this.panel7.Controls.Add(this.label11);
+            this.panel7.Controls.Add(this.textBox_Update_PlotOfLand_Choose);
+            this.panel7.Controls.Add(this.textBox_Update_PlotOfLand_X);
+            this.panel7.Controls.Add(this.label12);
+            this.panel7.Controls.Add(this.label13);
+            this.panel7.Controls.Add(this.textBox_Update_PlotOfLand_Y);
+            this.panel7.Controls.Add(this.comboBox_Update_PlotOfLand_X);
+            this.panel7.Controls.Add(this.button_Update_PlotOfLand);
+            this.panel7.Controls.Add(this.comboBox_Update_PlotOfLand_Y);
+            this.panel7.Controls.Add(this.label_Update_PlotOfLand);
+            this.panel7.Location = new System.Drawing.Point(985, 574);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(301, 169);
+            this.panel7.TabIndex = 39;
             // 
-            // textBox_Test_Delete_Count
+            // label14
             // 
-            this.textBox_Test_Delete_Count.Location = new System.Drawing.Point(18, 60);
-            this.textBox_Test_Delete_Count.Name = "textBox_Test_Delete_Count";
-            this.textBox_Test_Delete_Count.Size = new System.Drawing.Size(45, 20);
-            this.textBox_Test_Delete_Count.TabIndex = 41;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(147, 14);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(121, 13);
+            this.label14.TabIndex = 45;
+            this.label14.Text = "Enter the number for the";
             // 
-            // label7
+            // button_Update_PlotOfLand_Find
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 40);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 13);
-            this.label7.TabIndex = 40;
-            this.label7.Text = "Count:";
+            this.button_Update_PlotOfLand_Find.Location = new System.Drawing.Point(22, 90);
+            this.button_Update_PlotOfLand_Find.Name = "button_Update_PlotOfLand_Find";
+            this.button_Update_PlotOfLand_Find.Size = new System.Drawing.Size(75, 23);
+            this.button_Update_PlotOfLand_Find.TabIndex = 57;
+            this.button_Update_PlotOfLand_Find.Text = "Find";
+            this.button_Update_PlotOfLand_Find.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // label11
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(15, 12);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 13);
-            this.label8.TabIndex = 36;
-            this.label8.Text = "Delete Data";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(147, 29);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(135, 13);
+            this.label11.TabIndex = 56;
+            this.label11.Text = "correcponding Plot of Land";
             // 
-            // label_KDTreeTester
+            // textBox_Update_PlotOfLand_Choose
             // 
-            this.label_KDTreeTester.AutoSize = true;
-            this.label_KDTreeTester.Location = new System.Drawing.Point(195, 11);
-            this.label_KDTreeTester.Name = "label_KDTreeTester";
-            this.label_KDTreeTester.Size = new System.Drawing.Size(80, 13);
-            this.label_KDTreeTester.TabIndex = 4;
-            this.label_KDTreeTester.Text = "KD Tree Tester";
+            this.textBox_Update_PlotOfLand_Choose.Location = new System.Drawing.Point(150, 51);
+            this.textBox_Update_PlotOfLand_Choose.Name = "textBox_Update_PlotOfLand_Choose";
+            this.textBox_Update_PlotOfLand_Choose.Size = new System.Drawing.Size(51, 20);
+            this.textBox_Update_PlotOfLand_Choose.TabIndex = 55;
             // 
-            // panel6
+            // textBox_Update_PlotOfLand_X
             // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.button_Test_Find);
-            this.panel6.Controls.Add(this.textBox_Test_Find_Count);
-            this.panel6.Controls.Add(this.label15);
-            this.panel6.Controls.Add(this.label16);
-            this.panel6.Location = new System.Drawing.Point(267, 37);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(126, 126);
-            this.panel6.TabIndex = 34;
+            this.textBox_Update_PlotOfLand_X.Location = new System.Drawing.Point(29, 34);
+            this.textBox_Update_PlotOfLand_X.Name = "textBox_Update_PlotOfLand_X";
+            this.textBox_Update_PlotOfLand_X.Size = new System.Drawing.Size(62, 20);
+            this.textBox_Update_PlotOfLand_X.TabIndex = 50;
             // 
-            // button_Test_Find
+            // label12
             // 
-            this.button_Test_Find.Location = new System.Drawing.Point(9, 89);
-            this.button_Test_Find.Name = "button_Test_Find";
-            this.button_Test_Find.Size = new System.Drawing.Size(106, 23);
-            this.button_Test_Find.TabIndex = 37;
-            this.button_Test_Find.Text = "Generate Find";
-            this.button_Test_Find.UseVisualStyleBackColor = true;
-            this.button_Test_Find.Click += new System.EventHandler(this.button_Test_Find_Click);
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 37);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(17, 13);
+            this.label12.TabIndex = 48;
+            this.label12.Text = "X:";
             // 
-            // textBox_Test_Find_Count
+            // label13
             // 
-            this.textBox_Test_Find_Count.Location = new System.Drawing.Point(15, 60);
-            this.textBox_Test_Find_Count.Name = "textBox_Test_Find_Count";
-            this.textBox_Test_Find_Count.Size = new System.Drawing.Size(45, 20);
-            this.textBox_Test_Find_Count.TabIndex = 36;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 63);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(17, 13);
+            this.label13.TabIndex = 49;
+            this.label13.Text = "Y:";
             // 
-            // label15
+            // textBox_Update_PlotOfLand_Y
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 40);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(38, 13);
-            this.label15.TabIndex = 35;
-            this.label15.Text = "Count:";
+            this.textBox_Update_PlotOfLand_Y.Location = new System.Drawing.Point(29, 60);
+            this.textBox_Update_PlotOfLand_Y.Name = "textBox_Update_PlotOfLand_Y";
+            this.textBox_Update_PlotOfLand_Y.Size = new System.Drawing.Size(62, 20);
+            this.textBox_Update_PlotOfLand_Y.TabIndex = 51;
             // 
-            // label16
+            // comboBox_Update_PlotOfLand_X
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(12, 12);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(53, 13);
-            this.label16.TabIndex = 35;
-            this.label16.Text = "Find Data";
+            this.comboBox_Update_PlotOfLand_X.FormattingEnabled = true;
+            this.comboBox_Update_PlotOfLand_X.Location = new System.Drawing.Point(98, 32);
+            this.comboBox_Update_PlotOfLand_X.Name = "comboBox_Update_PlotOfLand_X";
+            this.comboBox_Update_PlotOfLand_X.Size = new System.Drawing.Size(40, 21);
+            this.comboBox_Update_PlotOfLand_X.TabIndex = 52;
             // 
-            // label9
+            // button_Update_PlotOfLand
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(124, 59);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 13);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "Duplicit %";
+            this.button_Update_PlotOfLand.Location = new System.Drawing.Point(151, 85);
+            this.button_Update_PlotOfLand.Name = "button_Update_PlotOfLand";
+            this.button_Update_PlotOfLand.Size = new System.Drawing.Size(117, 28);
+            this.button_Update_PlotOfLand.TabIndex = 54;
+            this.button_Update_PlotOfLand.Text = "Update";
+            this.button_Update_PlotOfLand.UseVisualStyleBackColor = true;
             // 
-            // textBox_Test_Insert_DuplicitPercentage
+            // comboBox_Update_PlotOfLand_Y
             // 
-            this.textBox_Test_Insert_DuplicitPercentage.Location = new System.Drawing.Point(127, 79);
-            this.textBox_Test_Insert_DuplicitPercentage.Name = "textBox_Test_Insert_DuplicitPercentage";
-            this.textBox_Test_Insert_DuplicitPercentage.Size = new System.Drawing.Size(60, 20);
-            this.textBox_Test_Insert_DuplicitPercentage.TabIndex = 24;
+            this.comboBox_Update_PlotOfLand_Y.FormattingEnabled = true;
+            this.comboBox_Update_PlotOfLand_Y.Location = new System.Drawing.Point(98, 60);
+            this.comboBox_Update_PlotOfLand_Y.Name = "comboBox_Update_PlotOfLand_Y";
+            this.comboBox_Update_PlotOfLand_Y.Size = new System.Drawing.Size(40, 21);
+            this.comboBox_Update_PlotOfLand_Y.TabIndex = 53;
+            // 
+            // label_Update_PlotOfLand
+            // 
+            this.label_Update_PlotOfLand.AutoSize = true;
+            this.label_Update_PlotOfLand.Location = new System.Drawing.Point(9, 12);
+            this.label_Update_PlotOfLand.Name = "label_Update_PlotOfLand";
+            this.label_Update_PlotOfLand.Size = new System.Drawing.Size(102, 13);
+            this.label_Update_PlotOfLand.TabIndex = 30;
+            this.label_Update_PlotOfLand.Text = "Update Plot of Land";
             // 
             // MainForm
             // 
@@ -1507,7 +1512,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1387, 894);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel_OperationGenerator);
             this.Controls.Add(this.panel_SelectTree);
             this.Controls.Add(this.panel_Tree_Statistics);
@@ -1545,14 +1551,10 @@
             this.panel1.PerformLayout();
             this.panel_OperationGenerator.ResumeLayout(false);
             this.panel_OperationGenerator.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1675,30 +1677,31 @@
         private System.Windows.Forms.Label label_GeneratorDelete_Count;
         private System.Windows.Forms.Label label_GeneratorDelete;
         private System.Windows.Forms.Panel panel_OperationGenerator;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox_Test_Insert_DesMiesta;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button_Test_Insert;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox_Test_Insert_Count;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox_Test_Insert_Min;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox_Test_Insert_Max;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button_Test_Delete;
-        private System.Windows.Forms.TextBox textBox_Test_Delete_Count;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label_KDTreeTester;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button button_Test_Find;
-        private System.Windows.Forms.TextBox textBox_Test_Find_Count;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox_Test_Insert_DuplicitPercentage;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label_Update_RealEstate;
+        private System.Windows.Forms.TextBox textBox_Update_RealEstate_X;
+        private System.Windows.Forms.Label label_Update_RealEstate_X;
+        private System.Windows.Forms.Label label_Update_RealEstate_Y;
+        private System.Windows.Forms.TextBox textBox_Update_RealEstate_Y;
+        private System.Windows.Forms.ComboBox comboBox_Update_RealEstate_X;
+        private System.Windows.Forms.Button button_Update_RealEstate;
+        private System.Windows.Forms.ComboBox comboBox_Update_RealEstate_Y;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label_Update_PlotOfLand;
+        private System.Windows.Forms.Label label_Update_RealEstate_Choose;
+        private System.Windows.Forms.Button button_Update_RealEstate_Find;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox_Update_RealEstate_Choose;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button button_Update_PlotOfLand_Find;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox_Update_PlotOfLand_Choose;
+        private System.Windows.Forms.TextBox textBox_Update_PlotOfLand_X;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox_Update_PlotOfLand_Y;
+        private System.Windows.Forms.ComboBox comboBox_Update_PlotOfLand_X;
+        private System.Windows.Forms.Button button_Update_PlotOfLand;
+        private System.Windows.Forms.ComboBox comboBox_Update_PlotOfLand_Y;
     }
 }

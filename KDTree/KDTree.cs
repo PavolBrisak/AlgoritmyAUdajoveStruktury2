@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UdajovkySem1.StructureTester;
 
 namespace UdajovkySem1
 {
-    public class KDTree<T> : IInsertable<T> where T : IComparable
+    public class KDTree<T>  where T : IComparable
     {
         public KDNode<T> Root { get; set; }
         public KDTreeLevelOrderIterator<T> Iterator { get; set; }
@@ -15,7 +14,7 @@ namespace UdajovkySem1
         public KDTree()
         {
             Root = null;
-            Iterator = new KDTreeLevelOrderIterator<T>();
+            Iterator = new KDTreeLevelOrderIterator<T>(Root);
         }
 
         public void Insert(T data)
@@ -59,173 +58,183 @@ namespace UdajovkySem1
 
         public void Delete(T data)
         {
-            KDNode<T> node = FindSpecificNode(data);
-            if (node == null)
-            {
-                return;
-            }
-
-            if (node.IsLeaf())
-            {
-                if (Root == node)
-                {
-                    Root = null;
-                    return;
-                }
-                DeleteLeaf(node);
-                return;
-            }
-
-            KDNode<T> replacementNode = null;
-            Iterator = new KDTreeLevelOrderIterator<T>();
+            List<KDNode<T>> nodesToBeDeleted = new List<KDNode<T>>();
+            KDNode<T> mainNode = FindSpecificNode(data);
             List<KDNode<T>> nodesToBeInsertedBack = new List<KDNode<T>>();
 
-
-            if (node.RightSon != null)
+            if (mainNode != null)
             {
-                replacementNode = Iterator.FindMin(node.RightSon, node.Depth);
-                Console.WriteLine("Replacement node: " + replacementNode.Data + " for node: " + node.Data);
+                nodesToBeDeleted.Add(mainNode);
+            }
 
-                bool end = true;
-                while (end)
+            while (nodesToBeDeleted.Count > 0)
+            {
+                KDNode<T> node = nodesToBeDeleted[0];
+                nodesToBeDeleted.RemoveAt(0);
+
+                if (node.IsLeaf())
                 {
-                    KDNode<T> nodeToBeInsertedBack = Iterator.FindEqual(node.RightSon, node.Depth, replacementNode);
-                    if (nodeToBeInsertedBack != null)
+                    if (Root == node)
                     {
-                        Console.WriteLine("Node to be inserted back: " + nodeToBeInsertedBack.Data + " for replacement node: " + replacementNode.Data);
-                        if (!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack))
+                        Root = null;
+                        continue;
+                    }
+
+                    DeleteLeaf(node);
+                    continue;
+                }
+
+                KDNode<T> replacementNode = null;
+                KDTreeIteratorForMinMax<T> iterator = new KDTreeIteratorForMinMax<T>();
+
+                if (node.RightSon != null)
+                {
+                    replacementNode = iterator.FindMin(node, node.RightSon);
+
+                    bool end = true;
+                    while (end)
+                    {
+                        KDNode<T> nodeToBeInsertedBack = iterator.FindEqual(node.RightSon, node.Depth, replacementNode,
+                            nodesToBeDeleted);
+                        if (nodeToBeInsertedBack != null)
                         {
-                            nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
-                            Delete(nodeToBeInsertedBack.Data);
+                            if ((!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack)) &&
+                                (!nodesToBeDeleted.Contains(nodeToBeInsertedBack)))
+                            {
+                                nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
+                                nodesToBeDeleted.Add(nodeToBeInsertedBack);
+                            }
+                            else
+                            {
+                                end = false;
+                            }
                         }
                         else
                         {
                             end = false;
                         }
                     }
-                    else
-                    {
-                        end = false;
-                    }
+
                 }
-
-            }
-            else if (node.LeftSon != null)
-            {
-                replacementNode = Iterator.FindMax(node.LeftSon, node.Depth);
-                Console.WriteLine("Replacement node: " + replacementNode.Data + " for node: " + node.Data);
-
-                bool end = true;
-                while (end)
+                else if (node.LeftSon != null)
                 {
-                    KDNode<T> nodeToBeInsertedBack = Iterator.FindEqual(node.LeftSon, node.Depth, replacementNode);
-                    if (nodeToBeInsertedBack != null)
+                    replacementNode = iterator.FindMax(node, node.LeftSon);
+
+                    bool end = true;
+                    while (end)
                     {
-                        Console.WriteLine("Node to be inserted back: " + nodeToBeInsertedBack.Data + " for replacement node: " + replacementNode.Data);
-                        if (!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack))
+                        KDNode<T> nodeToBeInsertedBack =
+                            iterator.FindEqual(node.LeftSon, node.Depth, replacementNode, nodesToBeDeleted);
+                        if (nodeToBeInsertedBack != null)
                         {
-                            nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
-                            Delete(nodeToBeInsertedBack.Data);
+                            if ((!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack)) &&
+                                (!nodesToBeDeleted.Contains(nodeToBeInsertedBack)))
+                            {
+                                nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
+                                nodesToBeDeleted.Add(nodeToBeInsertedBack);
+                            }
+                            else
+                            {
+                                end = false;
+                            }
                         }
                         else
                         {
                             end = false;
                         }
                     }
-                    else
-                    {
-                        end = false;
-                    }
                 }
-            }
 
-            Console.WriteLine("Replacement node: " + replacementNode.Data + " for node: " + node.Data);
-
-            if (replacementNode != null && replacementNode.IsLeaf())
-            {
-                SwitchNodes(replacementNode, node);
-            }
-            else
-            {
-                List<KDNode<T>> replacements = new List<KDNode<T>>();
-                replacements.Add(replacementNode);
-                KDNode<T> replacementNodeCopy = replacementNode;
-                bool end = true;
-                while (replacementNode != null && end)
+                if (replacementNode != null && replacementNode.IsLeaf())
                 {
-                    if (replacementNode.RightSon != null)
-                    {
-                        replacementNode = Iterator.FindMin(replacementNode.RightSon, replacementNode.Depth);
-                        bool endEqual = true;
-                        while (endEqual)
-                        {
-                            KDNode<T> nodeToBeInsertedBack = Iterator.FindEqual(replacementNodeCopy.RightSon, replacementNodeCopy.Depth, replacementNode);
-                            if (nodeToBeInsertedBack != null)
-                            {
-                                Console.WriteLine("Node to be inserted back: " + nodeToBeInsertedBack.Data + " for replacement node: " + replacementNode.Data);
-                                if (!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack))
-                                {
-                                    nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
-                                    Delete(nodeToBeInsertedBack.Data);
-                                }
-                                else
-                                {
-                                    endEqual = false;
-                                }
-                            }
-                            else
-                            {
-                                endEqual = false;
-                            }
-                        }
-                        replacementNodeCopy = replacementNode;
-                    }
-                    else if (replacementNode.LeftSon != null)
-                    {
-                        replacementNode = Iterator.FindMax(replacementNode.LeftSon, replacementNode.Depth);
-                        bool endEqual = true;
-                        while (endEqual)
-                        {
-                            KDNode<T> nodeToBeInsertedBack = Iterator.FindEqual(replacementNodeCopy.LeftSon, replacementNodeCopy.Depth, replacementNode);
-                            if (nodeToBeInsertedBack != null)
-                            {
-                                Console.WriteLine("Node to be inserted back: " + nodeToBeInsertedBack.Data + " for replacement node: " + replacementNode.Data);
-                                if (!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack))
-                                {
-                                    nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
-                                    Delete(nodeToBeInsertedBack.Data);
-                                }
-                                else
-                                {
-                                    endEqual = false;
-                                }
-                            }
-                            else
-                            {
-                                endEqual = false;
-                            }
-                        }
-                        replacementNodeCopy = replacementNode;
-                    }
+                    SwitchNodes(replacementNode, node);
+                }
+                else
+                {
+                    List<KDNode<T>> replacements = new List<KDNode<T>>();
                     replacements.Add(replacementNode);
-                    if (replacementNode.IsLeaf())
+                    KDNode<T> replacementNodeCopy = replacementNode;
+                    bool end = true;
+                    while (replacementNode != null && end)
                     {
-                        end = false;
+                        if (replacementNode.RightSon != null)
+                        {
+                            replacementNode = iterator.FindMin(replacementNode, replacementNode.RightSon);
+                            bool endEqual = true;
+                            while (endEqual)
+                            {
+                                KDNode<T> nodeToBeInsertedBack = iterator.FindEqual(replacementNodeCopy.RightSon,
+                                    replacementNodeCopy.Depth, replacementNode, nodesToBeDeleted);
+                                if (nodeToBeInsertedBack != null)
+                                {
+                                    if ((!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack)) &&
+                                        (!nodesToBeDeleted.Contains(nodeToBeInsertedBack)))
+                                    {
+                                        nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
+                                        nodesToBeDeleted.Add(nodeToBeInsertedBack);
+                                    }
+                                    else
+                                    {
+                                        endEqual = false;
+                                    }
+                                }
+                                else
+                                {
+                                    endEqual = false;
+                                }
+                            }
+
+                            replacementNodeCopy = replacementNode;
+                        }
+                        else if (replacementNode.LeftSon != null)
+                        {
+                            replacementNode = iterator.FindMax(replacementNode, replacementNode.LeftSon);
+                            bool endEqual = true;
+                            while (endEqual)
+                            {
+                                KDNode<T> nodeToBeInsertedBack = iterator.FindEqual(replacementNodeCopy.LeftSon,
+                                    replacementNodeCopy.Depth, replacementNode, nodesToBeDeleted);
+                                if (nodeToBeInsertedBack != null)
+                                {
+                                    if ((!nodesToBeInsertedBack.Contains(nodeToBeInsertedBack)) &&
+                                        (!nodesToBeDeleted.Contains(nodeToBeInsertedBack)))
+                                    {
+                                        nodesToBeInsertedBack.Add(nodeToBeInsertedBack);
+                                        nodesToBeDeleted.Add(nodeToBeInsertedBack);
+                                    }
+                                    else
+                                    {
+                                        endEqual = false;
+                                    }
+                                }
+                                else
+                                {
+                                    endEqual = false;
+                                }
+                            }
+
+                            replacementNodeCopy = replacementNode;
+                        }
+
+                        replacements.Add(replacementNode);
+                        if (replacementNode.IsLeaf())
+                        {
+                            end = false;
+                        }
+                    }
+
+                    for (int i = 0; i <= replacements.Count - 1; i++)
+                    {
+                        SwitchNodes(replacements[i], node);
                     }
                 }
 
-                for (int i = 0; i <= replacements.Count - 1; i++)
-                {
-                    SwitchNodes(replacements[i], node);
-                }
+                DeleteLeaf(node);
             }
-
-            DeleteLeaf(node);
 
             for (int i = 0; i <= nodesToBeInsertedBack.Count - 1; i++)
             {
                 Insert(nodesToBeInsertedBack[i].Data);
-                Console.WriteLine("bol som tu a vkladam " + nodesToBeInsertedBack[i].Data);
             }
         }
 
@@ -285,8 +294,6 @@ namespace UdajovkySem1
             {
                 return;
             }
-
-            Console.WriteLine("Switching " + node1.Data + " with " + node2.Data);
 
             int tempDepth = node1.Depth;
             node1.Depth = node2.Depth;
@@ -351,8 +358,6 @@ namespace UdajovkySem1
             {
                 Root = node1;
             }
-
-            Console.WriteLine("Switched " + node1.Data + " with " + node2.Data);
         }
 
         public List<T> Find(T data)
@@ -386,7 +391,7 @@ namespace UdajovkySem1
         public string Print()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            PrintSubTree(Root, 0, "Root", stringBuilder);
+            PrintSubTree(Root, stringBuilder);
             if (stringBuilder.Length == 0)
             {
                 return "Tree is empty";
@@ -394,51 +399,41 @@ namespace UdajovkySem1
             return stringBuilder.ToString();
         }
 
-        private void PrintSubTree(KDNode<T> node, int depth, string position, StringBuilder stringBuilder)
+        private void PrintSubTree(KDNode<T> node, StringBuilder stringBuilder)
         {
             if (node == null)
                 return;
 
-            stringBuilder.AppendLine(new string(' ', depth * 2) + depth + " " + position + ": " + node.Data);
+            Stack<(KDNode<T> node, int depth, string position)> stack = new Stack<(KDNode<T>, int, string)>();
+            stack.Push((node, 0, "Root"));
 
-            PrintSubTree(node.LeftSon, depth + 1, "Left Son", stringBuilder);
-            PrintSubTree(node.RightSon, depth + 1, "Right Son", stringBuilder);
+            while (stack.Count > 0)
+            {
+                var (currentNode, depth, position) = stack.Pop();
+                stringBuilder.AppendLine(new string(' ', depth * 2) + depth + " " + position + ": " + currentNode.Data);
+
+                if (currentNode.RightSon != null)
+                {
+                    stack.Push((currentNode.RightSon, depth + 1, "Right Son"));
+                }
+                if (currentNode.LeftSon != null)
+                {
+                    stack.Push((currentNode.LeftSon, depth + 1, "Left Son"));
+                }
+            }
         }
     }
 
-    public class KDTreeLevelOrderIterator<T> where T : IComparable
+    public class KDTreeIteratorForMinMax<T> where T : IComparable
     {
         private KDNode<T> _current;
         private Queue<KDNode<T>> _queue;
 
-        public KDTreeLevelOrderIterator()
+        public KDTreeIteratorForMinMax()
         {
             _current = null;
             _queue = new Queue<KDNode<T>>();
         }
-
-        public void ProcessNode()
-        {
-            if (_current == null)
-                return;
-
-            if (_current.LeftSon != null)
-            {
-                _queue.Enqueue(_current.LeftSon);
-            }
-            if (_current.RightSon != null)
-            {
-                _queue.Enqueue(_current.RightSon);
-            }
-
-            _current = _queue.Dequeue();
-        }
-
-        public KDNode<T> GetCurrent()
-        {
-            return _current;
-        }
-
         private void ClearQueue()
         {
             while (_queue.Count > 0)
@@ -446,76 +441,100 @@ namespace UdajovkySem1
                 _queue.Dequeue();
             }
         }
-
-        public KDNode<T> FindMin(KDNode<T> node, int depth)
+        public KDNode<T> FindMin(KDNode<T> mainNode, KDNode<T> hisSon)
         {
-            if (node == null)
+            if (hisSon == null)
                 return null;
 
-            if (node.LeftSon == null && node.RightSon == null)
-                return node;
-
             ClearQueue();
-            KDNode<T> minNode = node;
-            _queue.Enqueue(node);
+            KDNode<T> minNode = hisSon;
+            _queue.Enqueue(hisSon);
+
+            int dimensionMainNode = mainNode.Data.GetDimension();
+            int mainDepth = mainNode.Depth;
+            int mainComparisonValue = mainDepth % dimensionMainNode;
 
             while (_queue.Count > 0)
             {
                 KDNode<T> current = _queue.Dequeue();
 
-                if (current.Data.CompareTo(minNode.Data, depth) < 0)
+                if (current.Data.CompareTo(minNode.Data, mainDepth) < 0)
                 {
                     minNode = current;
                 }
 
-                if (current.LeftSon != null)
+                int currentComparisonValue = current.Depth % dimensionMainNode;
+
+                if (currentComparisonValue == mainComparisonValue)
                 {
-                    _queue.Enqueue(current.LeftSon);
+                    if (current.LeftSon != null)
+                    {
+                        _queue.Enqueue(current.LeftSon);
+                    }
                 }
-                if (current.RightSon != null)
+                else
                 {
-                    _queue.Enqueue(current.RightSon);
+                    if (current.LeftSon != null)
+                    {
+                        _queue.Enqueue(current.LeftSon);
+                    }
+                    if (current.RightSon != null)
+                    {
+                        _queue.Enqueue(current.RightSon);
+                    }
                 }
             }
-
             return minNode;
         }
 
-        public KDNode<T> FindMax(KDNode<T> node, int depth)
+        public KDNode<T> FindMax(KDNode<T> mainNode, KDNode<T> hisSon)
         {
-            if (node == null)
+            if (hisSon == null)
                 return null;
 
-            if (node.LeftSon == null && node.RightSon == null)
-                return node;
-
             ClearQueue();
-            KDNode<T> maxNode = node;
-            _queue.Enqueue(node);
+            KDNode<T> maxNode = hisSon;
+            _queue.Enqueue(hisSon);
+
+            int dimensionMainNode = mainNode.Data.GetDimension();
+            int mainDepth = mainNode.Depth;
+            int mainComparisonValue = mainDepth % dimensionMainNode;
 
             while (_queue.Count > 0)
             {
                 KDNode<T> current = _queue.Dequeue();
 
-                if (current.Data.CompareTo(maxNode.Data, depth) > 0)
+                if (current.Data.CompareTo(maxNode.Data, mainDepth) > 0)
                 {
                     maxNode = current;
                 }
 
-                if (current.LeftSon != null)
+                int currentComparisonValue = current.Depth % dimensionMainNode;
+
+                if (currentComparisonValue == mainComparisonValue)
                 {
-                    _queue.Enqueue(current.LeftSon);
+                    if (current.RightSon != null)
+                    {
+                        _queue.Enqueue(current.RightSon);
+                    }
                 }
-                if (current.RightSon != null)
+                else
                 {
-                    _queue.Enqueue(current.RightSon);
+                    if (current.LeftSon != null)
+                    {
+                        _queue.Enqueue(current.LeftSon);
+                    }
+
+                    if (current.RightSon != null)
+                    {
+                        _queue.Enqueue(current.RightSon);
+                    }
                 }
             }
 
             return maxNode;
         }
-
-        public KDNode<T> FindEqual(KDNode<T> son, int depth, KDNode<T> replacementNode)
+        public KDNode<T> FindEqual(KDNode<T> son, int depth, KDNode<T> replacementNode, List<KDNode<T>> nodesToBeDeleted)
         {
             if (son == null)
                 return null;
@@ -527,9 +546,10 @@ namespace UdajovkySem1
             KDNode<T> current = son;
             _queue.Enqueue(son);
 
-            while (_queue.Count > 0) {
+            while (_queue.Count > 0)
+            {
                 current = _queue.Dequeue();
-                if ((current.Data.CompareTo(replacementNode.Data, depth)) == 0 && (current != replacementNode))
+                if ((current.Data.CompareTo(replacementNode.Data, depth)) == 0 && (current != replacementNode) && (!nodesToBeDeleted.Contains(current)))
                 {
                     return current;
                 }
@@ -544,6 +564,56 @@ namespace UdajovkySem1
             }
 
             return null;
+        }
+    }
+
+    public class KDTreeLevelOrderIterator<T> where T : IComparable
+    {
+        private KDNode<T> _current;
+        private Queue<KDNode<T>> _queue;
+
+        public KDTreeLevelOrderIterator(KDNode<T> start)
+        {
+            _current = start;
+            _queue = new Queue<KDNode<T>>();
+            if (_current != null)
+            {
+                _queue.Enqueue(_current);
+            }
+        }
+
+        public void ProcessNode()
+        {
+            _current = _queue.Dequeue();
+
+            if (_current == null)
+                return;
+
+            if (_current.LeftSon != null)
+            {
+                _queue.Enqueue(_current.LeftSon);
+            }
+            if (_current.RightSon != null)
+            {
+                _queue.Enqueue(_current.RightSon);
+            }
+        }
+
+        public KDNode<T> GetCurrent()
+        {
+            return _current;
+        }
+
+        private void ClearQueue()
+        {
+            while (_queue.Count > 0)
+            {
+                _queue.Dequeue();
+            }
+        }
+        public bool HasNext()
+        {
+            return _queue.Count > 0;
         }
     }
 }

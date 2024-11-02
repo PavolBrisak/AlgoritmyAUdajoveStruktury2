@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UdajovkySem1.StructureTester;
 
 namespace UdajovkySem1
 {
@@ -387,73 +386,6 @@ namespace UdajovkySem1
                 {
                     _appCore.GenerateDeleteRealEstate(count);
                     textBox_SubPrint.Text = "Deleted real estates.";
-                    PrintTree();
-                }
-                catch (Exception ex)
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-            }
-            else
-            {
-                ShowErrorMessage("Please enter valid numeric values in all fields.");
-            }
-        }
-
-        private void button_Test_Insert_Click(object sender, EventArgs e)
-        {
-            if (int.TryParse(textBox_Test_Insert_Count.Text, out int count) &&
-                double.TryParse(textBox_Test_Insert_Max.Text, out double max) &&
-                double.TryParse(textBox_Test_Insert_Min.Text, out double min) &&
-                int.TryParse(textBox_Test_Insert_DesMiesta.Text, out int desMiesta) &&
-                double.TryParse(textBox_Test_Insert_DuplicitPercentage.Text, out double duplicityPercentage))
-            {
-                try
-                {
-                    _appCore.TestInsert(count, min, max, desMiesta, duplicityPercentage);
-                    textBox_SubPrint.Text = "Test data inserted into the Data Tree.";
-                    PrintTree();
-                }
-                catch (Exception ex)
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-            }
-            else
-            {
-                ShowErrorMessage("Please enter valid numeric values in all fields.");
-            }
-        }
-
-        private void button_Test_Find_Click(object sender, EventArgs e)
-        {
-            if (int.TryParse(textBox_Test_Find_Count.Text, out int count))
-            {
-                try
-                {
-                    string found = _appCore.TestFind(count);
-                    textBox_SubPrint.Text = found;
-                    PrintTree();
-                }
-                catch (Exception ex)
-                {
-                    ShowErrorMessage(ex.Message);
-                }
-            }
-            else
-            {
-                ShowErrorMessage("Please enter valid numeric values in all fields.");
-            }
-        }
-
-        private void button_Test_Delete_Click(object sender, EventArgs e)
-        {
-            if (int.TryParse(textBox_Test_Delete_Count.Text, out int count))
-            {
-                try
-                {
-                    string deleted = _appCore.TestDelete(count);
-                    textBox_SubPrint.Text = deleted;
                     PrintTree();
                 }
                 catch (Exception ex)

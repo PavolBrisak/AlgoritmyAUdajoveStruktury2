@@ -39,7 +39,7 @@ namespace UdajovkySem1
                 throw new ArgumentException("Object is not a GPSPosition");
             }
 
-            int compareValue = depth % 2;
+            int compareValue = depth % GetDimension();
 
             if (compareValue == 0)
             {
@@ -107,6 +107,16 @@ namespace UdajovkySem1
                 return true;
             }
             return false;
+        }
+
+        public int GetDimension()
+        {
+            return 2;
+        }
+
+        public object GetUniqueId()
+        {
+            return UniqueId;
         }
     }
 }

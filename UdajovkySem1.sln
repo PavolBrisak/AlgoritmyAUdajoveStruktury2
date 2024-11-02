@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdajovkySem1", "UdajovkySem1.csproj", "{480E8D6B-E3FA-4CC9-90B4-B903CB3A8665}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdajovkySem1.StructureTester", "..\ConsoleApp2\UdajovkySem1.StructureTester.csproj", "{3FE749F6-C826-4150-9EAD-65247EC58D15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{480E8D6B-E3FA-4CC9-90B4-B903CB3A8665}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{480E8D6B-E3FA-4CC9-90B4-B903CB3A8665}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{480E8D6B-E3FA-4CC9-90B4-B903CB3A8665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FE749F6-C826-4150-9EAD-65247EC58D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FE749F6-C826-4150-9EAD-65247EC58D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FE749F6-C826-4150-9EAD-65247EC58D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FE749F6-C826-4150-9EAD-65247EC58D15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

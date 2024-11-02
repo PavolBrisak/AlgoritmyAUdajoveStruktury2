@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UdajovkySem1.StructureTester;
 
 namespace UdajovkySem1
 {
@@ -12,12 +11,11 @@ namespace UdajovkySem1
         private readonly KDTree<GPSPosition> _plotsOfLandTree;
         private readonly KDTree<GPSPosition> _realEstatesTree;
         private readonly KDTree<GPSPosition> _allGpsPositionsTree;
+
+        //toto dat do potomka a v aplikacii nie je generator, a tie dva lsity
         private readonly OperationGenerator _operationGenerator;
         private readonly List<PlotOfLand> _plotsOfLand;
         private readonly List<RealEstate> _realEstates;
-
-        private readonly KDTree<Numbers> _numbersTree;
-        private readonly List<Numbers> _numbers;
         private int _uniqueId = 0;
 
         public ApplicationCore()
@@ -25,12 +23,9 @@ namespace UdajovkySem1
             _plotsOfLandTree = new KDTree<GPSPosition>();
             _realEstatesTree = new KDTree<GPSPosition>();
             _allGpsPositionsTree = new KDTree<GPSPosition>();
-            _operationGenerator = new OperationGenerator();
+            _operationGenerator = new OperationGenerator(new Random());
             _plotsOfLand = new List<PlotOfLand>();
             _realEstates = new List<RealEstate>();
-
-            _numbersTree = new KDTree<Numbers>();
-            _numbers = new List<Numbers>();
         }
 
         public string PrintSelectedTree(string selectedTree)
@@ -43,8 +38,6 @@ namespace UdajovkySem1
                     return PrintTree(_realEstatesTree);
                 case "All GPS Positions Tree":
                     return PrintTree(_allGpsPositionsTree);
-                case "Test Data Tree":
-                    return PrintTree(_numbersTree);
                 default:
                     return string.Empty;
             }
@@ -241,7 +234,7 @@ namespace UdajovkySem1
             double x1 = _operationGenerator.GenerateValueFromMinMax(min, max, desMiesta);
             double y1 = _operationGenerator.GenerateValueFromMinMax(min, max, desMiesta);
             int number = _operationGenerator.GenerateIntValue();
-            string description = _operationGenerator.GenerateString();
+            string description = _operationGenerator.GenerateString(10);
 
             char directionX2 = _operationGenerator.GenerateValueFromMinMax(0, 1) > 0.5 ? 'N' : 'S';
             char directionY2 = _operationGenerator.GenerateValueFromMinMax(0, 1) > 0.5 ? 'E' : 'W';
@@ -499,47 +492,6 @@ namespace UdajovkySem1
             });
         }
 
-        public void TestInsert(int count, double min, double max, int desMiesta, double duplicityPercentage)
-        {
-            CheckMinMaxCount(count, min, max);
-            CheckPercentage(duplicityPercentage);
-
-            Numbers previousNumbers = null;
-            PrintLogToConsole("Inserting " + count + " items:");
-
-            _operationGenerator.GenerateInsert(count, () =>
-            {
-                double A;
-                string B;
-                int C;
-                double D;
-
-                if (previousNumbers != null && _operationGenerator.GenerateValueFromMinMax(0, 1) <= duplicityPercentage)
-                {
-                    A = previousNumbers.A;
-                    B = previousNumbers.B;
-                    C = previousNumbers.C;
-                    D = previousNumbers.D;
-                }
-                else
-                {
-                    A = _operationGenerator.GenerateValueFromMinMax(min, max, desMiesta);
-                    B = _operationGenerator.GenerateString();
-                    C = _operationGenerator.GenerateIntValue();
-                    D = _operationGenerator.GenerateValueFromMinMax(min, max, desMiesta);
-                }
-
-                Numbers numbers = new Numbers(A, B, C, D, _uniqueId);
-                _uniqueId++;
-                _numbersTree.Insert(numbers);
-                _numbers.Add(numbers);
-
-                PrintLogToConsole("Inserted data: " + numbers.ToString());
-
-                previousNumbers = numbers;
-            });
-        }
-
         private void CheckPercentage(double duplicityPercentage)
         {
             if (duplicityPercentage < 0 || duplicityPercentage > 1)
@@ -548,92 +500,14 @@ namespace UdajovkySem1
             }
         }
 
-        public string TestFind(int count)
-        {
-            if (count < 0)
-            {
-                throw new ArgumentException("Count must be positive.");
-            }
-            if (count > _numbers.Count)
-            {
-                throw new ArgumentException("Count must be less than the number of test data.");
-            }
-
-            StringBuilder result = new StringBuilder();
-            PrintLogToConsole("Finding " + count + " items:");
-            _operationGenerator.GenerateFind(count, () =>
-            {
-                int randomIndex = _operationGenerator.GenerateIntValue(0, _numbers.Count);
-                Numbers randomItem = _numbers[randomIndex];
-
-                List<Numbers> found = _numbersTree.Find(randomItem);
-                result.AppendLine("Found data for -> " + randomItem.ToString() + ": ");
-
-                for (int i = 0; i < found.Count; i++)
-                {
-                    result.AppendLine(found[i].ToString());
-                }
-                result.AppendLine();
-
-                PrintLogToConsole("Found data for -> " + randomItem.ToString());
-                foreach (Numbers numbers in found)
-                {
-                    PrintLogToConsole(numbers.ToString());
-                }
-            });
-            return result.ToString();
-        }
-
-        public string TestDelete(int count)
-        {
-            if (count < 0)
-            {
-                throw new ArgumentException("Count must be positive.");
-            }
-            if (count > _numbers.Count)
-            {
-                throw new ArgumentException("Count must be less than the number of test data.");
-            }
-            StringBuilder result = new StringBuilder();
-            PrintLogToConsole("Deleting " + count + " items:");
-            _operationGenerator.GenerateDelete(count, () =>
-            {
-                int randomIndex = _operationGenerator.GenerateIntValue(0, _numbers.Count);
-                Numbers randomNumbers = _numbers[randomIndex];
-                PrintLogToConsole("Strom pred deletom prvku: " + randomNumbers.ToString() + " :");
-                PrintLogToConsole(PrintTree(_numbersTree));
-                PrintLogToConsole("Deleting data: " + randomNumbers.ToString());
-                _numbersTree.Delete(randomNumbers);
-                PrintLogToConsole("Znova sa pokusam najst ten prvok, ktory sme vymazali: ");
-                Numbers found = _numbersTree.FindSpecificData(randomNumbers);
-                if (found != null)
-                {
-                    PrintLogToConsole("Nasiel som ho: " + found.ToString());
-                }
-                else
-                {
-                    PrintLogToConsole("Nenasli sme ho.");
-                }
-                if (_numbersTree.Root == null)
-                {
-                    PrintLogToConsole("Strom je prazdny.");
-                }
-                else
-                {
-                    PrintLogToConsole("Strom po delete: ");
-                    PrintLogToConsole(PrintTree(_numbersTree));
-                }
-                _numbers.Remove(randomNumbers);
-                result.AppendLine("Deleted data: " + randomNumbers.ToString());
-
-                PrintLogToConsole("Deleted data: " + randomNumbers.ToString());
-            });
-            return result.ToString();
-        }
-
         public void PrintLogToConsole(string log)
         {
             Console.WriteLine(log);
         }
+    }
+
+    public class ApplicationOperationGenerator : ApplicationCore
+    {
+
     }
 }

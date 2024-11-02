@@ -10,7 +10,8 @@ namespace UdajovkySem1
     {
         int CompareTo(object obj, int depth);
         bool Equals(object obj);
-
+        int GetDimension();
         bool SpecificEquals(object obj);
+        object GetUniqueId();
     }
 }
